@@ -1,0 +1,239 @@
+public class Person {
+    private String name;
+    private int age;
+
+    public Person(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public static void main(String[] args) {
+
+        Person person1 = new Person("John", 25);
+        Person person2 = new Person("Anna", 30);
+
+        System.out.println("Person 1: Name - " + person1.getName() + ", Age - " + person1.getAge());
+        System.out.println("Person 2: Name - " + person2.getName() + ", Age - " + person2.getAge());
+    }
+}
+import java.util.ArrayList;
+import java.util.Random;
+
+public class MusicLibrary {
+    private ArrayList<String> songs;
+
+    public MusicLibrary() {
+        this.songs = new ArrayList<>();
+    }
+
+    public void addSong(String song) {
+        songs.add(song);
+        System.out.println(song + " added to the music library.");
+    }
+
+    public void removeSong(String song) {
+        if (songs.contains(song)) {
+            songs.remove(song);
+            System.out.println(song + " removed from the music library.");
+        } else {
+            System.out.println(song + " not found in the music library.");
+        }
+    }
+
+    public void playRandomSong() {
+        if (songs.isEmpty()) {
+            System.out.println("The music library is empty.");
+        } else {
+            Random random = new Random();
+            int randomIndex = random.nextInt(songs.size());
+            String randomSong = songs.get(randomIndex);
+            System.out.println("Playing random song: " + randomSong);
+        }
+    }
+
+    public static void main(String[] args) {
+   
+        MusicLibrary musicLibrary = new MusicLibrary();
+
+        musicLibrary.addSong("Song1");
+        musicLibrary.addSong("Song2");
+        musicLibrary.addSong("Song3");
+
+        musicLibrary.playRandomSong();
+
+  
+        musicLibrary.removeSong("Song2");
+        musicLibrary.playRandomSong();
+    }
+}
+import java.util.ArrayList;
+
+
+class Account {
+    private String accountNumber;
+    private double balance;
+
+
+    public Account(String accountNumber, double initialBalance) {
+        this.accountNumber = accountNumber;
+        this.balance = initialBalance;
+    }
+
+    public String getAccountNumber() {
+        return accountNumber;
+    }
+
+
+    public double getBalance() {
+        return balance;
+    }
+
+    public void deposit(double amount) {
+        balance += amount;
+        System.out.println("Deposited " + amount + " into account " + accountNumber + ". New balance: " + balance);
+    }
+
+
+    public void withdraw(double amount) {
+        if (amount <= balance) {
+            balance -= amount;
+            System.out.println("Withdrawn " + amount + " from account " + accountNumber + ". New balance: " + balance);
+        } else {
+            System.out.println("Insufficient funds in account " + accountNumber);
+        }
+    }
+}
+
+
+public class Bank {
+    private ArrayList<Account> accounts;
+
+    public Bank() {
+        this.accounts = new ArrayList<>();
+    }
+
+    public void addAccount(Account account) {
+        accounts.add(account);
+        System.out.println("Account " + account.getAccountNumber() + " added to the bank.");
+    }
+
+
+    public void removeAccount(Account account) {
+        if (accounts.remove(account)) {
+            System.out.println("Account " + account.getAccountNumber() + " removed from the bank.");
+        } else {
+            System.out.println("Account not found in the bank.");
+        }
+    }
+
+    public static void main(String[] args) {
+
+        Bank bank = new Bank();
+
+   
+        Account account1 = new Account("123456", 1000.0);
+        Account account2 = new Account("789012", 500.0);
+
+        bank.addAccount(account1);
+        bank.addAccount(account2);
+
+
+        account1.deposit(500.0);
+        account2.withdraw(200.0);
+
+
+        bank.removeAccount(account1);
+    }
+}
+import java.util.ArrayList;
+
+
+class CafeItem {
+    private String itemName;
+    private double price;
+    private double rating;
+
+
+    public CafeItem(String itemName, double price, double rating) {
+        this.itemName = itemName;
+        this.price = price;
+        this.rating = rating;
+    }
+
+    public String getItemName() {
+        return itemName;
+    }
+
+ 
+    public double getPrice() {
+        return price;
+    }
+
+    public double getRating() {
+        return rating;
+    }
+}
+
+
+public class Cafe {
+    private ArrayList<CafeItem> menu;
+
+
+    public Cafe() {
+        this.menu = new ArrayList<>();
+    }
+
+
+    public void addItem(CafeItem item) {
+        menu.add(item);
+        System.out.println("Item " + item.getItemName() + " added to the menu.");
+    }
+
+
+    public void removeItem(CafeItem item) {
+        if (menu.remove(item)) {
+            System.out.println("Item " + item.getItemName() + " removed from the menu.");
+        } else {
+            System.out.println("Item not found in the menu.");
+        }
+    }
+
+
+    public double calculateAverageRating() {
+        if (menu.isEmpty()) {
+            System.out.println("The menu is empty. Cannot calculate average rating.");
+            return 0.0;
+        }
+
+        double totalRating = 0.0;
+        for (CafeItem item : menu) {
+            totalRating += item.getRating();
+        }
+
+        return totalRating / menu.size();
+    }
+
+    public static void main(String[] args) {
+  
+        Cafe cafe = new Cafe();
+
+  
+        CafeItem item1 = new CafeItem("Coffee", 3.5, 4.2);
+        CafeItem item2 = new CafeItem("Sandwich", 8.0, 4.5);
+
+        cafe.addItem(item1);
+        cafe.addItem(item2);
+
+        cafe.removeItem(item1);
+        double averageRating = cafe.calculateAverageRating();
+        System.out.println("Average Rating: " + averageRating);
+    }
+}
