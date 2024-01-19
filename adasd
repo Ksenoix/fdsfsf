@@ -1,0 +1,84 @@
+import java.util.ArrayList;
+
+
+class CafeItem {
+    private String itemName;
+    private double price;
+    private double rating;
+
+
+    public CafeItem(String itemName, double price, double rating) {
+        this.itemName = itemName;
+        this.price = price;
+        this.rating = rating;
+    }
+
+    public String getItemName() {
+        return itemName;
+    }
+
+ 
+    public double getPrice() {
+        return price;
+    }
+
+    public double getRating() {
+        return rating;
+    }
+}
+
+
+public class Cafe {
+    private ArrayList<CafeItem> menu;
+
+
+    public Cafe() {
+        this.menu = new ArrayList<>();
+    }
+
+
+    public void addItem(CafeItem item) {
+        menu.add(item);
+        System.out.println("Item " + item.getItemName() + " added to the menu.");
+    }
+
+
+    public void removeItem(CafeItem item) {
+        if (menu.remove(item)) {
+            System.out.println("Item " + item.getItemName() + " removed from the menu.");
+        } else {
+            System.out.println("Item not found in the menu.");
+        }
+    }
+
+
+    public double calculateAverageRating() {
+        if (menu.isEmpty()) {
+            System.out.println("The menu is empty. Cannot calculate average rating.");
+            return 0.0;
+        }
+
+        double totalRating = 0.0;
+        for (CafeItem item : menu) {
+            totalRating += item.getRating();
+        }
+
+        return totalRating / menu.size();
+    }
+
+    public static void main(String[] args) {
+  
+        Cafe cafe = new Cafe();
+
+  
+        CafeItem item1 = new CafeItem("Coffee", 3.5, 4.2);
+        CafeItem item2 = new CafeItem("Sandwich", 8.0, 4.5);
+
+        cafe.addItem(item1);
+        cafe.addItem(item2);
+
+        cafe.removeItem(item1);
+        double averageRating = cafe.calculateAverageRating();
+        System.out.println("Average Rating: " + averageRating);
+    }
+}
